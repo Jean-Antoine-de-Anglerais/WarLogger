@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
+using System.Reflection;
+using ReflectionUtility;
 using UnityEngine;
 using UnityEngine.Scripting;
 using static ConstantNamespace.ConstantClass;
@@ -22,6 +23,22 @@ namespace WarLogger_BepInEx
         {
             Logger.LogMessage("ХООООООООЙ");
 
+            // Debug.Log($"{MethodBase.GetCurrentMethod().DeclaringType.Namespace} loading...");
+            // 
+            // Assembly assembly = AccessTools.AllAssemblies().FirstOrDefault(t => t.GetName().Name == "Assembly-CSharp");
+            // 
+            // if (assembly != null)
+            // {
+            //     var war = assembly.GetModule("War");
+            // 
+            //     if (war != null) 
+            //     {
+            //         war.
+            //     }
+            // }
+            // 
+            // 
+            // var fieldDefold = 
         }
 
         public void Start()
@@ -182,7 +199,7 @@ namespace WarLogger_BepInEx
                 $"\r Дата завершения - {war_logged.war_ended_data}" +
                 $"\r Тип войны - {war_logged.war_type}" +
                 $"\r Все нападающие - {war_logged.string_attackers_names}" +
-                $"\r Все защитники - {war_logged.string_defenders_names}" +                
+                $"\r Все защитники - {war_logged.string_defenders_names}" +
                 $"\r Умерло нападающих - {war_logged.dead_attackers}" +
                 $"\r Умерло защищающих - {war_logged.dead_defenders}" +
                 $"\r Всего умерло - {war_logged.dead}" +
@@ -270,12 +287,19 @@ namespace WarLogger_BepInEx
         {
             if (__instance == World.world.wars)
             {
-                
+
             }
 
             if (pWar != null && pWar.isAlive())
             {
-                Saver.Prepare(World.world.mapStats.name, pWar);
+                // Saver.Prepare(World.world.mapStats.name, pWar);
+
+
+                for (int i = 0; i < 200; i++)
+                {
+                    Console.WriteLine();
+
+                }
             }
         }
     }
