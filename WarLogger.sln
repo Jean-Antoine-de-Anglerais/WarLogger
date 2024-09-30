@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarLogger_BepInEx", "WarLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarLogger_BepInEx_Preloader", "WarLogger_BepInEx_Preloader\WarLogger_BepInEx_Preloader.csproj", "{8FAE0AE4-2E14-4B54-94C2-DAEBB9338CA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarLogger_Helper", "WarLogger_Helper\WarLogger_Helper.csproj", "{67AF9F56-E3CA-41FA-8F1C-2DBCEDC0582F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8FAE0AE4-2E14-4B54-94C2-DAEBB9338CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FAE0AE4-2E14-4B54-94C2-DAEBB9338CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FAE0AE4-2E14-4B54-94C2-DAEBB9338CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67AF9F56-E3CA-41FA-8F1C-2DBCEDC0582F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AF9F56-E3CA-41FA-8F1C-2DBCEDC0582F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AF9F56-E3CA-41FA-8F1C-2DBCEDC0582F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AF9F56-E3CA-41FA-8F1C-2DBCEDC0582F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
