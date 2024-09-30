@@ -2,7 +2,9 @@
 using Mono.Cecil.Cil;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using WarLogger_Helper;
 
 namespace WarLogger_BepInEx_Preloader
@@ -10,6 +12,18 @@ namespace WarLogger_BepInEx_Preloader
     public static class Patcher
     {
         public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll" };
+
+        public static void Initialize()
+        {
+            try { Assembly.LoadFrom(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "WarLogger_Helper.dll")); }
+
+            catch (Exception ex) { throw ex; }
+        }
+
+        public static void Finish()
+        {
+
+        }
 
         public static void Patch(AssemblyDefinition assembly)
         {
@@ -19,7 +33,7 @@ namespace WarLogger_BepInEx_Preloader
 
             var warData = mainModule.ImportReference(typeof(CustomWarData));
 
-            var newField = new FieldDefinition("warData", FieldAttributes.Public, warData);
+            var newField = new FieldDefinition("warData", Mono.Cecil.FieldAttributes.Public, warData);
 
             warClass.Fields.Add(newField);
 
@@ -27,7 +41,7 @@ namespace WarLogger_BepInEx_Preloader
 
             var ilProcessor = warConstructor.Body.GetILProcessor();
             ilProcessor.InsertBefore(warConstructor.Body.Instructions[0], Instruction.Create(OpCodes.Ldarg_0));
-            ilProcessor.InsertBefore(warConstructor.Body.Instructions[1], Instruction.Create(OpCodes.Newobj, mainModule.ImportReference(warData.Resolve().Methods.First(m => m.Name == ".ctor"))));
+            ilProcessor.InsertBefore(warConstructor.Body.Instructions[1], Instruction.Create(OpCodes.Newobj, mainModule.ImportReference(typeof(CustomWarData).GetConstructor(Type.EmptyTypes))));
             ilProcessor.InsertBefore(warConstructor.Body.Instructions[2], Instruction.Create(OpCodes.Stfld, newField));
         }
     }

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WarLogger_Helper
+﻿namespace WarLogger_Helper
 {
     public class CustomWarData
     {
-        public int test;
+        public int test = 4;
     }
 }
