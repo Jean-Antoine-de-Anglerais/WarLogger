@@ -48,19 +48,35 @@
   <PropertyGroup>
     <PostBuildEvent>set gameDirectoryPlugins="C:\Program Files (x86)\Steam\steamapps\common\worldbox\BepInEx\plugins"
 set gameDirectoryPatchers="C:\Program Files (x86)\Steam\steamapps\common\worldbox\BepInEx\patchers"
-set dll="WarLogger_Helper.dll"
-set pdb="WarLogger_Helper.pdb"
-if exist %25gameDirectoryPlugins%25 (ECHO "Destination directory found") ELSE (ECHO "Destination directory not found")
-if exist %25dll%25 (ECHO "Mod DLL found") ELSE (ECHO "Mod DLL not found")
+set dllWarLogger_Helper="WarLogger_Helper.dll"
+set pdbWarLogger_Helper="WarLogger_Helper.pdb"
+if exist %25gameDirectoryPlugins%25 (ECHO "gameDirectoryPlugins directory found") ELSE (ECHO "gameDirectoryPlugins directory not found")
+if exist %25dllWarLogger_Helper%25 (ECHO "dllWarLogger_Helper DLL found") ELSE (ECHO "dllWarLogger_Helper DLL not found")
 if exist %25gameDirectoryPlugins%25 copy /y %25dll%25 %25gameDirectoryPlugins%25
-if exist %25pdb%25 (ECHO "Mod PDB found") ELSE (ECHO "Mod PDB not found")
+if exist %25pdbWarLogger_Helper%25 (ECHO "pdbWarLogger_Helper PDB found") ELSE (ECHO "pdbWarLogger_Helper PDB not found")
 if exist %25gameDirectoryPlugins%25 copy /y %25pdb%25 %25gameDirectoryPlugins%25
 
-if exist %25gameDirectoryPatchers%25 (ECHO "Destination directory found") ELSE (ECHO "Destination directory not found")
-if exist %25dll%25 (ECHO "Mod DLL found") ELSE (ECHO "Mod DLL not found")
+if exist %25gameDirectoryPatchers%25 (ECHO "gameDirectoryPatchers directory found") ELSE (ECHO "gameDirectoryPatchers directory not found")
+if exist %25dllWarLogger_Helper%25 (ECHO "dllWarLogger_Helper DLL found") ELSE (ECHO "dllWarLogger_Helper DLL not found")
 if exist %25gameDirectoryPatchers%25 copy /y %25dll%25 %25gameDirectoryPatchers%25
-if exist %25pdb%25 (ECHO "Mod PDB found") ELSE (ECHO "Mod PDB not found")
+if exist %25pdbWarLogger_Helper%25 (ECHO "pdbWarLogger_Helper PDB found") ELSE (ECHO "pdbWarLogger_Helper PDB not found")
 if exist %25gameDirectoryPatchers%25 copy /y %25pdb%25 %25gameDirectoryPatchers%25
+
+set dllWarLogger_BepInEx_Preloader="WarLogger_BepInEx_Preloader.dll"
+set pdbWarLogger_BepInEx_Preloader="WarLogger_BepInEx_Preloader.pdb"
+if exist %25gameDirectoryPatchers%25 (ECHO "gameDirectoryPatchers directory found") ELSE (ECHO "gameDirectoryPatchers directory not found")
+if exist %25dllWarLogger_BepInEx_Preloader%25 (ECHO "dllWarLogger_BepInEx_Preloader DLL found") ELSE (ECHO "dllWarLogger_BepInEx_Preloader DLL not found")
+if exist %25gameDirectoryPatchers%25 copy /y %25dllWarLogger_BepInEx_Preloader%25 %25gameDirectoryPatchers%25
+if exist %25pdbWarLogger_BepInEx_Preloader%25 (ECHO "pdbWarLogger_BepInEx_Preloader PDB found") ELSE (ECHO "pdbWarLogger_BepInEx_Preloader PDB not found")
+if exist %25gameDirectoryPatchers%25 copy /y %25pdbWarLogger_BepInEx_Preloader%25 %25gameDirectoryPatchers%25
+
+set dllWarLogger_BepInEx="WarLogger_BepInEx.dll"
+set pdbWarLogger_BepInEx="WarLogger_BepInEx.pdb"
+if exist %25gameDirectoryPlugins%25 (ECHO "gameDirectoryPlugins directory found") ELSE (ECHO "gameDirectoryPlugins directory not found")
+if exist %25dllWarLogger_BepInEx%25 (ECHO "dllWarLogger_BepInEx DLL found") ELSE (ECHO "dllWarLogger_BepInEx DLL not found")
+if exist %25gameDirectoryPlugins%25 copy /y %25dllWarLogger_BepInEx%25 %25gameDirectoryPlugins%25
+if exist %25pdbWarLogger_BepInEx%25 (ECHO "pdbWarLogger_BepInEx PDB found") ELSE (ECHO "pdbWarLogger_BepInEx PDB not found")
+if exist %25gameDirectoryPlugins%25 copy /y %25pdbWarLogger_BepInEx%25 %25gameDirectoryPlugins%25
 start steam://rungameid/1206560</PostBuildEvent>
   </PropertyGroup>
 </Project>
