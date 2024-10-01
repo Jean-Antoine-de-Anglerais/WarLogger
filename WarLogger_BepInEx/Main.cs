@@ -1,12 +1,5 @@
 ﻿using BepInEx;
 using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.Scripting;
 using static ConstantNamespace.ConstantClass;
 
 namespace WarLogger_BepInEx
@@ -53,7 +46,10 @@ namespace WarLogger_BepInEx
             if (global::Config.gameLoaded && !_initialized)
             {
                 harmony.Patch(AccessTools.Method(typeof(WarManager), nameof(WarManager.endWar)),
-                prefix: new HarmonyMethod(AccessTools.Method(typeof(Patches), nameof(Patches.endWar_Prefix))));
+                    prefix: new HarmonyMethod(AccessTools.Method(typeof(Patches), nameof(Patches.endWar_Prefix))));
+
+                harmony.Patch(AccessTools.Method(typeof(WarManager), nameof(WarManager.stopAllWars)),
+                    transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches), nameof(Patches.stopAllWars_Transpiler))));
 
                 _initialized = true;
             }

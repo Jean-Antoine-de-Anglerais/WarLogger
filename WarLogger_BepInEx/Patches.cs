@@ -1,8 +1,8 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection.Emit;
 
 namespace WarLogger_BepInEx
 {
@@ -26,6 +26,39 @@ namespace WarLogger_BepInEx
 
                 }
             }
+        }
+
+        public static IEnumerable<CodeInstruction> stopAllWars_Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            /* Reference:
+                IL_000F: ldloc.0
+                IL_0010: call      void Transpilers::stopAllWars_Transpiler(class War)
+            */
+
+            var codes = new List<CodeInstruction>(instructions);
+
+            for (int i = 0; i < codes.Count; i++)
+            {
+                if (codes[i].opcode == OpCodes.Stloc_0)
+                {
+                    // Console.WriteLine("FOUND 1");
+
+                    var newCodes = new List<CodeInstruction>
+                    {
+                        new CodeInstruction(OpCodes.Ldloc_0),
+                        new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Transpilers), nameof(Transpilers.stopAllWars_Transpiler))),
+                    };
+
+                    codes.InsertRange(i + 1, newCodes);
+                }
+
+                // else
+                // {
+                //     Console.WriteLine("UNFOUNDED");
+                // }
+            }
+
+            return codes.AsEnumerable();
         }
     }
 }
