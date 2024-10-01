@@ -70,10 +70,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuxiliarySpace.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="ConstantClass.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Patches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionUtility.cs" />
+    <Compile Include="Saver.cs" />
+    <Compile Include="WarLoggerData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WarLogger_Helper\WarLogger_Helper.csproj">
