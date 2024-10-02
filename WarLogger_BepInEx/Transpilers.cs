@@ -11,5 +11,12 @@ namespace WarLogger_BepInEx
 
             сustomWarData.warEndReasons = WarEndReasons.StopAllWars;
         }
+
+        public static void init_Transpiler(Plot plot)
+        {
+            CustomWarData сustomWarData = (CustomWarData)Reflection.GetField(plot.target_war.GetType(), plot.target_war, "warData");
+
+            сustomWarData.warEndReasons = WarEndReasons.Plot;
+        }
     }
 }

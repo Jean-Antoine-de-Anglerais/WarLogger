@@ -3,6 +3,7 @@
     public enum WarEndReasons
     {
         None,
-        StopAllWars
+        StopAllWars,
+        Plot
     }
 }

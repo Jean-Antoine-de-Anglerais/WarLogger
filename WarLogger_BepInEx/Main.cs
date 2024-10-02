@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
+using System.Reflection;
 using static ConstantNamespace.ConstantClass;
 
 namespace WarLogger_BepInEx
@@ -50,6 +51,9 @@ namespace WarLogger_BepInEx
 
                 harmony.Patch(AccessTools.Method(typeof(WarManager), nameof(WarManager.stopAllWars)),
                     transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches), nameof(Patches.stopAllWars_Transpiler))));
+
+                harmony.Patch(AccessTools.Method(typeof(PlotsLibrary).GetNestedType("<>c", BindingFlags.NonPublic), "<init>b__6_25"),
+                    transpiler: new HarmonyMethod(AccessTools.Method(typeof(Patches), "init_Transpiler")));
 
                 _initialized = true;
             }

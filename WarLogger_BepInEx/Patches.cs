@@ -23,7 +23,6 @@ namespace WarLogger_BepInEx
                 for (int i = 0; i < 200; i++)
                 {
                     Console.WriteLine();
-
                 }
             }
         }
@@ -41,8 +40,6 @@ namespace WarLogger_BepInEx
             {
                 if (codes[i].opcode == OpCodes.Stloc_0)
                 {
-                    // Console.WriteLine("FOUND 1");
-
                     var newCodes = new List<CodeInstruction>
                     {
                         new CodeInstruction(OpCodes.Ldloc_0),
@@ -51,12 +48,22 @@ namespace WarLogger_BepInEx
 
                     codes.InsertRange(i + 1, newCodes);
                 }
-
-                // else
-                // {
-                //     Console.WriteLine("UNFOUNDED");
-                // }
             }
+
+            return codes.AsEnumerable();
+        }
+
+        public static IEnumerable<CodeInstruction> init_Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            var codes = new List<CodeInstruction>(instructions);
+
+            var newCodes = new List<CodeInstruction>
+            {
+                new CodeInstruction(OpCodes.Ldarg_1),
+                new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Transpilers), nameof(Transpilers.init_Transpiler))),
+            };
+
+            codes.InsertRange(0, newCodes);
 
             return codes.AsEnumerable();
         }
